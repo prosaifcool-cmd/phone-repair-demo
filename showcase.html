@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>نظام محل صيانة الجوالات | عرض النظام</title>
+<meta name="description" content="كل جهاز يدخل المحل له رقم وملصق QR وسجل: من الاستلام إلى الإصلاح إلى التسليم، مع إبلاغ العميل بواتساب بنقرة وفاتورة جاهزة.">
+<link rel="icon" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#1a1f35;--surface-2:#252b45;--border:#2d3452;--text:#f1f5f9;--muted:#94a3b8;--faint:#64748b;
+--primary:#6366f1;--primary-dark:#4f46e5;--glow:#6366f14d;--success:#10b981;--warning:#f59e0b;--info:#3b82f6}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--bg:#f4f6fb;--surface:#fff;--surface-2:#f1f5f9;--border:#e2e8f0;
+--text:#0f172a;--muted:#475569;--faint:#94a3b8;--glow:#6366f126}}
+:root[data-theme="light"]{--bg:#f4f6fb;--surface:#fff;--surface-2:#f1f5f9;--border:#e2e8f0;--text:#0f172a;--muted:#475569;--faint:#94a3b8;--glow:#6366f126}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.8 Cairo,Inter,system-ui,sans-serif}
+.aurora{position:fixed;inset:0;pointer-events:none;background:radial-gradient(900px 520px at 88% -8%,color-mix(in oklab,var(--primary) 22%,transparent),transparent 62%),
+radial-gradient(760px 460px at 4% 108%,color-mix(in oklab,#06b6d4 16%,transparent),transparent 58%);z-index:0}
+.wrap{position:relative;z-index:1;max-width:72rem;margin:0 auto;padding:0 16px}
+header.hero{padding:72px 0 40px;text-align:center}
+.logo{display:inline-grid;place-items:center;width:72px;height:72px;border-radius:22px;font-size:36px;color:#fff;
+background:linear-gradient(135deg,var(--primary),var(--primary-dark));box-shadow:0 10px 30px var(--glow)}
+h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.25;margin:18px 0 8px;font-weight:800;
+background:linear-gradient(135deg,var(--text),var(--primary));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:1.15rem;color:var(--muted);max-width:46rem;margin:0 auto}
+.cta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:.7rem 1.3rem;border-radius:14px;font-weight:700;text-decoration:none;border:1px solid var(--border);color:var(--text)}
+.btn.primary{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border:0;box-shadow:0 6px 18px var(--glow)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px}
+.chip{padding:.25rem .8rem;border-radius:999px;background:var(--surface-2);border:1px solid var(--border);font-size:.85rem;color:var(--muted)}
+section{margin:56px 0}h2{font-size:1.6rem;margin:0 0 6px;font-weight:800}.sub{color:var(--muted);margin:0 0 22px}
+.grid{display:grid;gap:16px}.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}.gal{grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));align-items:start}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:20px}
+.feat{border-top:3px solid var(--primary)}.feat h3{margin:0 0 4px;font-size:1.05rem}.feat p{margin:0;color:var(--muted);font-size:.95rem}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.steps li{counter-increment:s;display:flex;gap:14px;align-items:flex-start}
+.steps li::before{content:counter(s);flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--primary);color:#fff;font-weight:800}
+.acc{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.acc code{direction:ltr;unicode-bidi:embed;background:var(--surface-2);padding:.15rem .5rem;border-radius:8px;font-family:Inter,monospace}
+figure{margin:0}.shot{display:block;width:100%;border-radius:14px;border:1px solid var(--border);cursor:zoom-in;background:var(--surface-2)}
+figcaption{color:var(--muted);font-size:.92rem;margin-top:8px}
+.tl{list-style:none;padding:0;margin:0;border-inline-start:2px solid var(--border)}
+.tl li{position:relative;padding:0 18px 18px}.tl li::before{content:"";position:absolute;inset-inline-start:-7px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--primary)}
+.tl b{display:block}.tl span{color:var(--muted)}
+.note{border:1px solid color-mix(in oklab,var(--info) 40%,transparent);background:color-mix(in oklab,var(--info) 12%,transparent);color:var(--text);border-radius:16px;padding:14px 18px}
+footer{color:var(--faint);text-align:center;padding:40px 0 60px;font-size:.9rem}
+.toggle{position:fixed;top:14px;left:14px;z-index:5;width:42px;height:42px;border-radius:12px;border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer;font-size:18px}
+#lb{position:fixed;inset:0;background:#000c;display:none;place-items:center;z-index:10;padding:16px;cursor:zoom-out}#lb img{max-width:100%;max-height:100%;border-radius:12px}
+@media (prefers-reduced-motion:no-preference){.card,figure{animation:rise .5s ease-out both}}@keyframes rise{from{opacity:0;transform:translateY(10px)}}
+</style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<button class="toggle" aria-label="تبديل المظهر">◐</button>
+<div class="wrap">
+<header class="hero">
+  <div class="logo" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg></div>
+  <h1>نظام محل صيانة الجوالات</h1>
+  <p class="lead">كل جهاز يدخل المحل له رقم وملصق QR وسجل: من الاستلام إلى الإصلاح إلى التسليم، مع إبلاغ العميل بواتساب بنقرة وفاتورة جاهزة.</p>
+  <div class="cta"><a class="btn primary" href="./#/login">جرّب النسخة التجريبية الآن</a><a class="btn" href="#screens">صور النظام</a><a class="btn" href="#delivery">ما يُسلَّم لك</a></div>
+  <div class="chips"><span class="chip">استلام سريع</span><span class="chip">استكر و QR</span><span class="chip">حالات الصيانة</span><span class="chip">واتساب بنقرة</span><span class="chip">فاتورة PDF</span><span class="chip">سجل العملاء</span><span class="chip">مسح QR بالجوال</span></div>
+</header>
+
+<section aria-labelledby="h-problem"><div class="card"><h2 id="h-problem">ما المشكلة التي يحلها؟</h2><p class="sub" style="margin:0">في محلات الصيانة تضيع الأوراق الملصقة على الأجهزة، ويتصل العملاء ليسألوا هل جهازهم جاهز، ولا يوجد سجل لما دفعه كل عميل أو ما أُصلح في جهازه سابقاً. هذا النظام ينظّم المحل من أول دقيقة.</p></div></section>
+
+<section aria-labelledby="h-feat"><h2 id="h-feat">ماذا يفعل النظام</h2><p class="sub">كل ميزة أدناه موجودة وتعمل في النسخة التجريبية.</p><div class="grid g3"><div class="card feat"><h3>استلام في شاشة واحدة</h3><p>اكتب رقم جوال العميل: إن كان زبوناً سابقاً يظهر اسمه وأجهزته السابقة فوراً. ثم الجهاز والعطل والسعر والعربون والملحقات.</p></div><div class="card feat"><h3>استكر و QR</h3><p>رقم طلب فريد يُطبع على ملصق بمقاس طابعتك (50×30 أو 40×25 ملم) فيه الاسم والجوال والخدمة ورمز QR.</p></div><div class="card feat"><h3>حالات الصيانة</h3><p>قيد الصيانة ← جاهز للتسليم ← تم الاستلام، مع وقت كل تغيير وسجل كامل.</p></div><div class="card feat"><h3>واتساب بنقرة</h3><p>رسالة جاهزة للعميل باسمه ورقم طلبه والمبلغ المتبقي - مجانية بلا اشتراك، وقوالبها قابلة للتعديل.</p></div><div class="card feat"><h3>فاتورة عند التسليم</h3><p>تسجيل الدفع (نقداً، بطاقة، تحويل) وفاتورة تُطبع أو تُحفظ PDF وتُرسل بواتساب.</p></div><div class="card feat"><h3>القطع والربح</h3><p>القطع المستبدلة وكلفتها، وربح المحل من كل طلب - لا تظهر للعميل.</p></div><div class="card feat"><h3>تنبيه الأجهزة المنسية</h3><p>الأجهزة الجاهزة منذ أكثر من 3 أيام تظهر في لوحة التحكم مع زر تذكير بواتساب.</p></div><div class="card feat"><h3>سجل العملاء</h3><p>كل زيارة وكل جهاز لكل عميل، وإجمالي ما دفعه.</p></div><div class="card feat"><h3>مسح QR من الجوال</h3><p>امسح الملصق بكاميرا الجوال فيفتح الطلب مباشرة.</p></div></div></section>
+
+<section aria-labelledby="h-try"><h2 id="h-try">جرّبه في دقيقتين</h2><p class="sub">النسخة التجريبية تعمل في متصفحك، وما تضيفه يُحفظ عندك فقط، فجرّب بحرية.</p>
+<div class="grid g2"><div class="card"><ol class="steps"><li><div>ادخل (admin / 1234) - زر «تعبئة» في صفحة الدخول يكتبها لك.</div></li><li><div>افتح «استلام جهاز» واضغط الرقم المقترح تحت «جرّب»: يظهر العميل وأجهزته السابقة.</div></li><li><div>أكمل الجهاز والعطل والسعر واحفظ: يظهر الاستكر بمقاسه الحقيقي مع QR.</div></li><li><div>افتح الطلب واضغط «الجهاز جاهز للتسليم»، ثم «أبلغ العميل بواتساب».</div></li><li><div>اضغط «تسليم ودفع» لترى الفاتورة واطبعها أو احفظها PDF.</div></li></ol></div>
+<div class="card"><b>الحسابات التجريبية</b><div class="acc"><span class="chip">مدير المحل: <code>admin</code></span></div><p class="sub" style="margin:10px 0 0">كلمة المرور لكل الحسابات: <code style="direction:ltr;unicode-bidi:embed">1234</code>، أو اضغط اسم الحساب في صفحة الدخول.</p>
+<p style="margin-top:16px"><a class="btn primary" href="./#/login">فتح النسخة التجريبية</a></p></div></div></section>
+
+<section id="screens" aria-labelledby="h-screens"><h2 id="h-screens">صور من النظام</h2><p class="sub">اضغط أي صورة لتكبيرها.</p><div class="grid gal"><figure style="grid-column:1/-1"><img class="shot" loading="lazy" src="showcase/01.jpg" alt="لوحة التحكم: الأجهزة في الورشة والجاهزة وإيراد الشهر" style=""><figcaption style="">لوحة التحكم: الأجهزة في الورشة والجاهزة وإيراد الشهر</figcaption></figure><figure style=""><img class="shot" loading="lazy" src="showcase/02.jpg" alt="استلام جهاز لعميل سابق" style=""><figcaption style="">استلام جهاز لعميل سابق</figcaption></figure><figure style=""><img class="shot" loading="lazy" src="showcase/03.jpg" alt="الاستكر بمقاسه الحقيقي مع QR" style=""><figcaption style="">الاستكر بمقاسه الحقيقي مع QR</figcaption></figure><figure style="grid-column:1/-1"><img class="shot" loading="lazy" src="showcase/04.jpg" alt="تفاصيل الطلب: المراحل، والحساب، والقطع، والسجل" style=""><figcaption style="">تفاصيل الطلب: المراحل، والحساب، والقطع، والسجل</figcaption></figure><figure style=""><img class="shot" loading="lazy" src="showcase/05.jpg" alt="فاتورة التسليم - طباعة أو PDF أو واتساب" style=""><figcaption style="">فاتورة التسليم - طباعة أو PDF أو واتساب</figcaption></figure><figure style=""><img class="shot" loading="lazy" src="showcase/06.jpg" alt="الطلبات مع التصفية والبحث" style=""><figcaption style="">الطلبات مع التصفية والبحث</figcaption></figure><figure style=""><img class="shot" loading="lazy" src="showcase/07.jpg" alt="سجل العملاء" style=""><figcaption style="">سجل العملاء</figcaption></figure><figure style=""><img class="shot" loading="lazy" src="showcase/08.jpg" alt="الإعدادات: المحل، والعملة، وقوالب واتساب، ومقاس الاستكر" style=""><figcaption style="">الإعدادات: المحل، والعملة، وقوالب واتساب، ومقاس الاستكر</figcaption></figure><figure style=""><img class="shot" loading="lazy" src="showcase/09.jpg" alt="الوضع النهاري" style=""><figcaption style="">الوضع النهاري</figcaption></figure><figure style=""><img class="shot" loading="lazy" src="showcase/10.jpg" alt="الاستلام من الجوال" style="max-width:300px;margin-inline:auto"><figcaption style="text-align:center">الاستلام من الجوال</figcaption></figure></div></section>
+
+<section id="delivery" aria-labelledby="h-del"><h2 id="h-del">ما يُسلَّم في النسخة النهائية</h2><p class="sub">النسخة التجريبية تحفظ في متصفحك. النسخة التي تُسلَّم تعمل على جهاز المحل أو على الإنترنت، حسب اختيارك.</p><div class="grid g3"><div class="card feat"><h3>على جهاز المحل</h3><p>تنصيب بملف واحد على حاسوب المحل، بلا اشتراك شهري، ويعمل من جوالات الموظفين على نفس الشبكة.</p></div><div class="card feat"><h3>أو على الإنترنت</h3><p>استضافة سحابية باسمك لتفتح النظام من أي مكان.</p></div><div class="card feat"><h3>قاعدة بيانات</h3><p>SQL Server - بيانات مشتركة بين كل أجهزة المحل مع نسخ احتياطي.</p></div><div class="card feat"><h3>موظفون وصلاحيات</h3><p>حساب لكل موظف، ومن استلم أو سلّم كل جهاز.</p></div><div class="card feat"><h3>واتساب آلي (اختياري)</h3><p>إرسال تلقائي كامل عبر WhatsApp Business API، برسوم من Meta على كل رسالة.</p></div><div class="card feat"><h3>ضبط الطابعة</h3><p>ضبط الاستكر على موديل طابعتك ومقاس ملصقاتك الفعلي.</p></div></div></section>
+
+<section aria-labelledby="h-ph"><h2 id="h-ph">مراحل التنفيذ</h2><p class="sub">تسليم على مراحل، وتجربة نسخة عاملة مبكراً.</p><div class="card"><ol class="tl"><li><b>اليوم 1-2: الأساس</b><span>الاستلام والعملاء والطلبات والاستكر.</span></li><li><b>اليوم 3: نسخة تجريبية في المحل</b><span>تجربونها على أجهزة حقيقية وتعطون ملاحظاتكم.</span></li><li><b>اليوم 4: واتساب والفواتير</b><span>الرسائل والفاتورة والتقارير.</span></li><li><b>اليوم 5: التنصيب والتسليم</b><span>التنصيب وضبط الطابعة والشرح، ثم فترة ضمان.</span></li></ol></div></section>
+
+<section><div class="note">هذه نسخة تجريبية بُنيت لتوضيح الفكرة قبل البدء. كل شيء قابل للتعديل حسب طريقة عمل محلك.</div></section>
+</div>
+<footer>تصميم وتطوير: سيف علي خضير</footer>
+<div id="lb" role="dialog" aria-label="صورة مكبّرة"><img alt=""></div>
+<script>
+const r=document.documentElement,k='showcase_theme';try{const t=localStorage.getItem(k);if(t)r.dataset.theme=t}catch(e){}
+document.querySelector('.toggle').onclick=()=>{const dark=getComputedStyle(r).getPropertyValue('--bg').trim()==='#0a0e1a';r.dataset.theme=dark?'light':'dark';try{localStorage.setItem(k,r.dataset.theme)}catch(e){}};
+const lb=document.getElementById('lb'),li=lb.querySelector('img');document.querySelectorAll('.shot').forEach(i=>i.onclick=()=>{li.src=i.src;li.alt=i.alt;lb.style.display='grid'});lb.onclick=()=>lb.style.display='none';
+addEventListener('keydown',e=>{if(e.key==='Escape')lb.style.display='none'});
+</script>
+</body>
+</html>
